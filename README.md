@@ -16,3 +16,11 @@ npm i @mdi/font roboto-fontface vuetify
 ```sh
 npm i sass unplugin-fonts unplugin-vue-components vite-plugin-vuetify --save-dev
 ```
+
+## i18n
+
+- dependency
+
+```sh
+npm i vue-i18n
+```
