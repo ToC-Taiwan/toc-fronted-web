@@ -3,6 +3,7 @@ import { defineConfig } from "vite";
 
 import Vue from "@vitejs/plugin-vue";
 import ViteFonts from "unplugin-fonts/vite";
+import { VuetifyResolver } from "unplugin-vue-components/resolvers";
 import Components from "unplugin-vue-components/vite";
 import Vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 
@@ -14,7 +15,10 @@ export default defineConfig({
     }),
     // https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/vite-plugin#readme
     Vuetify(),
-    Components(),
+    Components({
+      resolvers: [VuetifyResolver()],
+      globs: [] // don't scan for components
+    }),
     ViteFonts({
       google: {
         families: [
