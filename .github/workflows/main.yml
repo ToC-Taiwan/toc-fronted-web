@@ -43,7 +43,7 @@ jobs:
       - name: setup node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "20.12"
       - run: npm i && npm run build
 
       - name: log in to the github registry
