@@ -3,22 +3,25 @@ import { defineConfig } from "vite";
 
 import Vue from "@vitejs/plugin-vue";
 import ViteFonts from "unplugin-fonts/vite";
-import { VuetifyResolver } from "unplugin-vue-components/resolvers";
 import Components from "unplugin-vue-components/vite";
+import Pages from "vite-plugin-pages";
+import Layouts from "vite-plugin-vue-layouts";
+
+import { VuetifyResolver } from "unplugin-vue-components/resolvers";
 import Vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    Vue({
-      template: { transformAssetUrls }
-    }),
-    // https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/vite-plugin#readme
-    Vuetify(),
+    Layouts(),
+    Pages(),
     Components({
       resolvers: [VuetifyResolver()],
       globs: [] // don't scan for components
     }),
+    Vue({
+      template: { transformAssetUrls }
+    }),
+    Vuetify(),
     ViteFonts({
       google: {
         families: [

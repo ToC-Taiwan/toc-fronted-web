@@ -10,3 +10,6 @@ ncu -u
 
 npm install
 npm run build
+
+git add package.json
+git add package-lock.json
