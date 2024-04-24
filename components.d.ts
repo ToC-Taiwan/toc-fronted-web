@@ -7,7 +7,10 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    AuthLogin: typeof import('./src/components/AuthLogin.vue')['default']
+    Button: typeof import('primevue/button')['default']
+    Dropdown: typeof import('primevue/dropdown')['default']
+    InputText: typeof import('primevue/inputtext')['default']
+    LocaleDropdown: typeof import('./src/components/LocaleDropdown.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
