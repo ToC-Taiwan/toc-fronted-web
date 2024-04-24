@@ -1,4 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+// import { StockDetailMessage } from "@/pb/forwarder/basic";
+
+// const stock = new StockDetailMessage();
+// stock.code = "000001";
+
+// const bytesData: Uint8Array = stock.serialize();
+
+// console.log(bytesData);
+// console.log(StockDetailMessage.deserialize(bytesData).code);
+</script>
 
 <template>
   <div>
