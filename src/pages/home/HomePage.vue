@@ -9,10 +9,9 @@ const stocks = ref<StockVolumeRankMessage[]>([]);
 
 onMounted(() => {
   const prototol = window.location.protocol === "https:" ? "wss" : "ws";
-  const socket = new WebSocket(
-    `${prototol}://${window.location.host}/tmt/v1/targets/ws`
-  );
-
+  const token = localStorage.getItem("token")?.replace("Bearer ", "");
+  const url = `${prototol}://${window.location.host}/tmt/v1/targets/ws?token=${token}`;
+  const socket = new WebSocket(url);
   socket.binaryType = "arraybuffer";
   socket.addEventListener("message", (event) => {
     const data = StockVolumeRankResponse.deserializeBinary(
