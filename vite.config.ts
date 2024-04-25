@@ -41,7 +41,14 @@ export default defineConfig({
   server: {
     proxy: {
       "/tmt": {
-        target: "http://localhost:26670",
+        target: "http://localhost:26670"
+      },
+      "/tmt/v1/stream/ws": {
+        target: "ws://localhost:26670",
+        ws: true
+      },
+      "/tmt/v1/targets/ws": {
+        target: "ws://localhost:26670",
         ws: true
       }
     }

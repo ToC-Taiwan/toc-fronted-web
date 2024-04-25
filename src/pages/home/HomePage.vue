@@ -1,19 +1,36 @@
 <script setup lang="ts">
-// import { StockDetailMessage } from "@/pb/forwarder/basic";
+import {
+  StockVolumeRankMessage,
+  StockVolumeRankResponse
+} from "@/pb/forwarder/realtime";
+import { onMounted, ref } from "vue";
 
-// const stock = new StockDetailMessage();
-// stock.code = "000001";
+const stocks = ref<StockVolumeRankMessage[]>([]);
 
-// const bytesData: Uint8Array = stock.serialize();
+onMounted(() => {
+  const prototol = window.location.protocol === "https:" ? "wss" : "ws";
+  const socket = new WebSocket(
+    `${prototol}://${window.location.host}/tmt/v1/targets/ws`
+  );
 
-// console.log(bytesData);
-// console.log(StockDetailMessage.deserialize(bytesData).code);
+  socket.binaryType = "arraybuffer";
+  socket.addEventListener("message", (event) => {
+    const data = StockVolumeRankResponse.deserializeBinary(
+      new Uint8Array(event.data)
+    );
+    stocks.value = data.data;
+  });
+});
 </script>
 
 <template>
-  <div>
-    <h1>Home</h1>
-    <p>Home page content</p>
+  <div class="card">
+    <DataTable :value="stocks" striped-rows table-style="min-width: 50rem">
+      <Column field="code" header="Code"></Column>
+      <Column field="name" header="Name"></Column>
+      <Column field="close" header="Close"></Column>
+      <Column field="total_volume" header="Total Volume"></Column>
+    </DataTable>
   </div>
 </template>
 
