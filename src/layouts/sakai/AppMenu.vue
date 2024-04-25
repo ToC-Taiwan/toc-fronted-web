@@ -6,6 +6,16 @@ import { type MenuItem } from "./types/menu";
 
 const model = ref<MenuItem[]>([
   {
+    label: "realtime",
+    items: [
+      {
+        label: "future",
+        icon: "pi pi-fw pi-slack",
+        to: "/realtime/future"
+      }
+    ]
+  },
+  {
     label: "basic",
     items: [
       {
