@@ -16,5 +16,6 @@ declare module 'vue' {
     LocaleDropdown: typeof import('./src/components/LocaleDropdown.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Timeline: typeof import('primevue/timeline')['default']
   }
 }
