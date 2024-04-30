@@ -2,7 +2,6 @@
 import { TradeIndex, WSMessage } from "@/pb/app/app";
 import type { FutureDetailMessage } from "@/pb/forwarder/basic";
 import { FutureRealTimeTickMessage } from "@/pb/forwarder/mq";
-import { Browser } from "@syncfusion/ej2-base";
 import {
   CandleSeries,
   Category,
@@ -18,10 +17,11 @@ import { onMounted, onUnmounted, provide, ref } from "vue";
 
 let socket: WebSocket | null = null;
 
-const tick = ref<FutureRealTimeTickMessage | null>(null);
-const tradeIndex = ref<TradeIndex | null>(null);
-const tickArr = ref<TimelineItem[]>([]);
 const futureDetail = ref<FutureDetailMessage>();
+const tradeIndex = ref<TradeIndex | null>(null);
+const tick = ref<FutureRealTimeTickMessage | null>(null);
+const tickArr = ref<TimelineItem[]>([]);
+const seriesData = ref<Kbar[]>([]);
 
 onMounted(() => {
   const prototol = window.location.protocol === "https:" ? "wss" : "ws";
@@ -39,7 +39,7 @@ onMounted(() => {
         icon: "pi pi-bars",
         color: data.future_tick.tick_type === 1 ? "red" : "green"
       });
-      if (tickArr.value.length > 15) {
+      if (tickArr.value.length > 6) {
         tickArr.value.splice(-1);
       }
     } else if (data.has_history_kbar) {
@@ -98,8 +98,6 @@ interface TimelineItem {
   color: string;
 }
 
-const seriesData = ref<Kbar[]>([]);
-
 provide("chart", [
   CandleSeries,
   StripLine,
@@ -112,11 +110,13 @@ provide("chart", [
   Crosshair
 ]);
 provide("rangeNavigator", [DateTime]);
+
 const primaryXAxis = {
   valueType: "DateTime",
   crosshairTooltip: { enable: true },
   majorGridLines: { width: 0 }
 };
+
 const primaryYAxis = {
   title: "Volume",
   opposedPosition: true,
@@ -125,6 +125,7 @@ const primaryYAxis = {
   lineStyle: { width: 0 },
   majorTickLines: { width: 0 }
 };
+
 const rows = [
   {
     height: "30%"
@@ -133,6 +134,7 @@ const rows = [
     height: "70%"
   }
 ];
+
 const axes = [
   {
     name: "secondary",
@@ -145,21 +147,27 @@ const axes = [
     rangePadding: "None"
   }
 ];
+
 const tooltip = {
   enable: true,
   shared: true,
   header: "",
-  format:
-    "<b>MXF</b> <br> High : <b>${point.high}</b> <br> Low : <b>${point.low}</b> <br> Open : <b>${point.open}</b> <br> Close : <b>${point.close}</b> <br> Volume : <b>${point.volume}</b>"
+  format: "High : <b>${point.high}</b> <br> "
+    .concat("Low : <b>${point.low}</b> <br> ")
+    .concat("Open : <b>${point.open}</b> <br> ")
+    .concat("Close : <b>${point.close}</b> <br> ")
+    .concat("Volume : <b>${point.volume}</b>")
 };
+
+const enableTooltip = false;
+
 const chartArea = {
   border: { width: 0 }
 };
-const width = Browser.isDevice ? "100%" : "75%";
+
 const legendSettings = {
   visible: false
 };
-const enableTooltip = false;
 </script>
 
 <template>
@@ -171,13 +179,13 @@ const enableTooltip = false;
             <template #title>NASDAQ</template>
             <template #content>
               <div
-                class="text-6xl"
+                class="text-5xl"
                 :class="{
                   'text-green-500': tradeIndex?.nasdaq.price_chg! < 0,
                   'text-red-500': tradeIndex?.nasdaq.price_chg! > 0
                 }"
               >
-                {{ tradeIndex?.nasdaq.price_chg.toFixed(2) }}
+                {{ Math.abs(tradeIndex?.nasdaq.price_chg || 0).toFixed(2) }}
               </div>
             </template>
           </Card>
@@ -187,13 +195,13 @@ const enableTooltip = false;
             <template #title>NF</template>
             <template #content>
               <div
-                class="text-6xl"
+                class="text-5xl"
                 :class="{
                   'text-green-500': tradeIndex?.nf.price_chg! < 0,
                   'text-red-500': tradeIndex?.nf.price_chg! > 0
                 }"
               >
-                {{ tradeIndex?.nf.price_chg.toFixed(2) }}
+                {{ Math.abs(tradeIndex?.nf.price_chg || 0).toFixed(2) }}
               </div>
             </template>
           </Card>
@@ -203,13 +211,13 @@ const enableTooltip = false;
             <template #title>TSE</template>
             <template #content>
               <div
-                class="text-6xl"
+                class="text-5xl"
                 :class="{
                   'text-green-500': tradeIndex?.tse.price_chg! < 0,
                   'text-red-500': tradeIndex?.tse.price_chg! > 0
                 }"
               >
-                {{ tradeIndex?.tse.price_chg.toFixed(2) }}
+                {{ Math.abs(tradeIndex?.tse.price_chg || 0).toFixed(2) }}
               </div>
             </template>
           </Card>
@@ -219,13 +227,13 @@ const enableTooltip = false;
             <template #title>OTC</template>
             <template #content>
               <div
-                class="text-6xl"
+                class="text-5xl"
                 :class="{
                   'text-green-500': tradeIndex?.otc.price_chg! < 0,
                   'text-red-500': tradeIndex?.otc.price_chg! > 0
                 }"
               >
-                {{ tradeIndex?.otc.price_chg.toFixed(2) }}
+                {{ Math.abs(tradeIndex?.otc.price_chg || 0).toFixed(2) }}
               </div>
             </template>
           </Card>
@@ -237,7 +245,6 @@ const enableTooltip = false;
             id="chartCandle"
             ref="chart"
             :chart-area="chartArea"
-            :width="width"
             align="center"
             :title="futureDetail?.name"
             style="display: block"
