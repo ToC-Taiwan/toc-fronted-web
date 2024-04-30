@@ -47,6 +47,8 @@ jobs:
       - run: |
           echo "VITE_SYNCFUSION_LICENSE=$SYNCFUSION_LICENSE" > .env
           npm i && npm run build
+        env:
+          SYNCFUSION_LICENSE: ${{ secrets.SYNCFUSION_LICENSE }}
 
       - name: log in to the github registry
         uses: docker/login-action@v3
