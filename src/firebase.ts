@@ -1,6 +1,7 @@
+import { initializeAnalytics } from "firebase/analytics";
 import { initializeApp } from "firebase/app";
 
-export const firebaseApp = initializeApp({
+const firebaseApp = initializeApp({
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
   databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
@@ -10,3 +11,7 @@ export const firebaseApp = initializeApp({
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 });
+
+initializeAnalytics(firebaseApp);
+
+export { firebaseApp };
