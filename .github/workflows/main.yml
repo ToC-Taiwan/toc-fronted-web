@@ -39,6 +39,7 @@ jobs:
           echo "REPOSITORY_LC=$LC_REPO_NAME" >> ${GITHUB_ENV}
           echo "SHORT_SHA=$(echo ${SHA} | cut -c1-7)" >> ${GITHUB_ENV}
           echo "REPOSITORY_NAME_ONLY="${LC_REPO_NAME/"${LC_USER_NAME}/"/""}"" >> ${GITHUB_ENV}
+          echo "VITE_SYNCFUSION_LICENSE=$SYNCFUSION_LICENSE" > .env
 
       - name: setup node
         uses: actions/setup-node@v4

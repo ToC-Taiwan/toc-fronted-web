@@ -11,9 +11,7 @@ import { createApp } from "vue";
 
 const app = createApp(App);
 
-registerLicense(
-  "ORg4AjUWIQA/Gnt2UFhhQlJBfV5AQmBIYVp/TGpJfl96cVxMZVVBJAtUQF1hTX5XdExjXXtcdHxcR2dZ"
-);
+registerLicense(import.meta.env.VITE_SYNCFUSION_LICENSE);
 
 app.use(createPinia());
 app.use(ChartPlugin);
