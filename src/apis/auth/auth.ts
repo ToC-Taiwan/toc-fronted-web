@@ -16,6 +16,7 @@ export const Refresh = async (): Promise<boolean> => {
   const res = await client.get("/tmt/v1/refresh");
   client.defaults.headers.common["Authorization"] = res.data.token;
   if (res.status === 200) {
+    localStorage.setItem("token", res.data.token);
     return true;
   }
   return false;
