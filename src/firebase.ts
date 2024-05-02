@@ -14,4 +14,4 @@ const firebaseApp = initializeApp({
 
 initializeAnalytics(firebaseApp);
 
-export { firebaseApp };
+export default firebaseApp;

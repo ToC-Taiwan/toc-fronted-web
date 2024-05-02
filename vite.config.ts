@@ -8,6 +8,20 @@ import Layouts from "vite-plugin-vue-layouts";
 
 const routesWithoutAuth = ["/login"];
 
+function manualChunks(id: string) {
+  if (id.includes("node_modules")) {
+    const regex = /node_modules\/([^/]+)\//;
+    const match = id.match(regex);
+    if (match && match[1]) {
+      if (match[1].includes("@")) {
+        return match[1].split("@")[1];
+      }
+      return match[1];
+    }
+    return "vendor";
+  }
+}
+
 export default defineConfig({
   plugins: [
     Vue(),
@@ -50,6 +64,14 @@ export default defineConfig({
       "/tmt/v1/targets/ws": {
         target: "ws://localhost:26670",
         ws: true
+      }
+    }
+  },
+  build: {
+    chunkSizeWarningLimit: 1024,
+    rollupOptions: {
+      output: {
+        manualChunks: manualChunks
       }
     }
   }
