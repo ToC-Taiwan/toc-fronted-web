@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Logout } from "@/apis/auth/auth";
+import router from "@/router";
 import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 
 import { useLayout } from "./composables/layout";
@@ -18,10 +20,6 @@ onBeforeUnmount(() => {
 
 const onTopBarMenuButton = () => {
   topbarMenuActive.value = !topbarMenuActive.value;
-};
-
-const onSettingsClick = () => {
-  topbarMenuActive.value = false;
 };
 
 const topbarMenuClasses = computed(() => {
@@ -59,6 +57,16 @@ const isOutsideClicked = (event: any) => {
     topbarEl?.contains(event.target)
   );
 };
+
+const op = ref();
+const toggle = (event: any) => {
+  op.value.toggle(event);
+};
+
+const logout = () => {
+  Logout();
+  router.push("/login");
+};
 </script>
 
 <template>
@@ -83,17 +91,37 @@ const isOutsideClicked = (event: any) => {
     </button>
 
     <div class="layout-topbar-menu" :class="topbarMenuClasses">
-      <button class="p-link layout-topbar-button" @click="onTopBarMenuButton()">
-        <i class="pi pi-calendar"></i>
-        <span>Calendar</span>
-      </button>
-      <button class="p-link layout-topbar-button" @click="onTopBarMenuButton()">
+      <button class="p-link layout-topbar-button" @click="toggle">
         <i class="pi pi-user"></i>
-        <span>Profile</span>
-      </button>
-      <button class="p-link layout-topbar-button" @click="onSettingsClick()">
-        <i class="pi pi-cog"></i>
-        <span>Settings</span>
+        <OverlayPanel ref="op">
+          <div class="flex flex-column gap-3 w-10rem">
+            <div>
+              <span class="font-medium text-900 block mb-2">{{
+                $t("user")
+              }}</span>
+            </div>
+            <div>
+              <ul class="list-none p-0 m-0 flex flex-column gap-3">
+                <button
+                  text
+                  class="p-link layout-topbar-button"
+                  @click="logout"
+                >
+                  <li class="flex align-items-center gap-2">
+                    <div>
+                      <span class="font-medium">{{ $t("logout") }}</span>
+                    </div>
+                    <div
+                      class="flex align-items-center gap-2 text-color-secondary ml-auto text-sm"
+                    >
+                      <i class="pi pi-sign-out"></i>
+                    </div>
+                  </li>
+                </button>
+              </ul>
+            </div>
+          </div>
+        </OverlayPanel>
       </button>
     </div>
   </div>

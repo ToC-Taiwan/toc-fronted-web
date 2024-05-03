@@ -14,6 +14,7 @@ declare module 'vue' {
     Dropdown: typeof import('primevue/dropdown')['default']
     InputText: typeof import('primevue/inputtext')['default']
     LocaleDropdown: typeof import('./src/components/LocaleDropdown.vue')['default']
+    OverlayPanel: typeof import('primevue/overlaypanel')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Timeline: typeof import('primevue/timeline')['default']

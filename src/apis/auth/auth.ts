@@ -21,3 +21,8 @@ export const Refresh = async (): Promise<boolean> => {
   }
   return false;
 };
+
+export const Logout = () => {
+  localStorage.removeItem("token");
+  client.defaults.headers.common["Authorization"] = "";
+};
