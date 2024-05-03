@@ -10,6 +10,8 @@
 <route lang="json">
 {
   "path": "/stocks",
-  "name": "StocksPage"
+  "meta": {
+    "title": "page_stocks"
+  }
 }
 </route>

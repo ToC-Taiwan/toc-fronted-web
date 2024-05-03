@@ -93,13 +93,9 @@ const logout = () => {
     <div class="layout-topbar-menu" :class="topbarMenuClasses">
       <button class="p-link layout-topbar-button" @click="toggle">
         <i class="pi pi-user"></i>
+        <span>{{ $t("user") }}</span>
         <OverlayPanel ref="op">
           <div class="flex flex-column gap-3 w-10rem">
-            <div>
-              <span class="font-medium text-900 block mb-2">{{
-                $t("user")
-              }}</span>
-            </div>
             <div>
               <ul class="list-none p-0 m-0 flex flex-column gap-3">
                 <button

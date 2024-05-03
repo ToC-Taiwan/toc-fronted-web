@@ -1,4 +1,5 @@
 import { Refresh } from "@/apis/auth/auth";
+import { i18n } from "@/i18n";
 import { setupLayouts } from "virtual:generated-layouts";
 import { createRouter, createWebHistory } from "vue-router";
 import generatedRoutes from "~pages";
@@ -9,12 +10,19 @@ const router = createRouter({
   routes
 });
 
+const locale = i18n.global.tm;
+
 router.beforeEach(async (to) => {
   let valid = false;
   try {
     valid = await Refresh();
   } catch {
     valid = false;
+  }
+
+  const title: string = to.meta.title as string;
+  if (title) {
+    document.title = `TMT - ${locale(title)}`;
   }
 
   if (!valid) {

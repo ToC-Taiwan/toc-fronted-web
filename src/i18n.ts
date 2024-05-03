@@ -32,6 +32,10 @@ function setupI18n(): I18n {
     options.messages![locale.name] = locale.locale;
   });
 
+  const locale = localStorage.getItem("locale");
+  if (locale) {
+    options.locale = locale;
+  }
   const i18n = createI18n(options);
   return i18n;
 }

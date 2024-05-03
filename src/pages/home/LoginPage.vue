@@ -124,8 +124,8 @@ const login = async () => {
 <route lang="json">
 {
   "path": "/login",
-  "name": "LoginPage",
   "meta": {
+    "title": "page_login",
     "layout": "BlankLayout"
   }
 }

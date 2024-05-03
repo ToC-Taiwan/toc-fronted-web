@@ -333,6 +333,8 @@ const legendSettings = {
 <route lang="json">
 {
   "path": "/realtime/future",
-  "name": "RealtimeFuture"
+  "meta": {
+    "title": "page_realtime_future"
+  }
 }
 </route>

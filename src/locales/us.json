@@ -158,5 +158,9 @@
   "wallet": "Wallet",
   "warn": "Warn",
   "warning": "Warning",
-  "welcome": "Welcome"
+  "welcome": "Welcome",
+  "page_home": "Home",
+  "page_stocks": "Stocks",
+  "page_login": "Login",
+  "page_realtime_future": "Realtime Future"
 }

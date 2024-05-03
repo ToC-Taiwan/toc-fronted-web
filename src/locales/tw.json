@@ -158,5 +158,9 @@
   "wallet": "錢包",
   "warn": "警告",
   "warning": "警告",
-  "welcome": "歡迎"
+  "welcome": "歡迎",
+  "page_home": "首頁",
+  "page_stocks": "股票",
+  "page_login": "登入",
+  "page_realtime_future": "即時期貨"
 }
