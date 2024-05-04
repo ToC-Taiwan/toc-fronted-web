@@ -162,5 +162,6 @@
   "page_home": "Home",
   "page_stocks": "Stocks",
   "page_login": "Login",
-  "page_realtime_future": "Realtime Future"
+  "page_realtime_future": "Realtime Future",
+  "back_to_home": "Back to Home"
 }
