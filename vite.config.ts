@@ -33,7 +33,8 @@ export default defineConfig({
         return route;
       },
       dirs: "src/pages",
-      routeBlockLang: "json"
+      routeBlockLang: "json",
+      resolver: "vue"
     }),
     Layouts({
       layoutsDirs: "src/layouts",

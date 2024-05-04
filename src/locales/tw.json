@@ -163,5 +163,8 @@
   "page_stocks": "股票",
   "page_login": "登入",
   "page_realtime_future": "即時期貨",
-  "back_to_home": "回到首頁"
+  "back_to_home": "回到首頁",
+  "verify_user": "驗證使用者",
+  "user_verified": "使用者已驗證",
+  "user_not_verified": "使用者尚未驗證"
 }

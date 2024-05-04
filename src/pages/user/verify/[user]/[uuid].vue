@@ -1,4 +1,35 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { VerifyUser } from "@/apis/auth/auth";
+import { i18n } from "@/i18n";
+import { onMounted, ref } from "vue";
+
+const props = defineProps({
+  user: {
+    type: String,
+    required: true
+  },
+  uuid: {
+    type: String,
+    required: true
+  }
+});
+
+const result = ref("...");
+
+onMounted(() => {
+  VerifyUser(props.user, props.uuid)
+    .then(() => {
+      result.value = i18n.global.tm("user_verified");
+    })
+    .catch((e: string) => {
+      if (i18n.global.te(e)) {
+        result.value = i18n.global.tm(e);
+      } else {
+        result.value = i18n.global.tm("user_not_verified");
+      }
+    });
+});
+</script>
 
 <template>
   <div
@@ -25,24 +56,22 @@
             alt="Sakai logo"
             class="mb-5 w-6rem flex-shrink-0"
           />
-          <span class="text-blue-500 font-bold text-8xl">404</span>
+          <span class="text-blue-500 font-bold text-4xl">{{
+            $t("verify_user")
+          }}</span>
           <h1 class="text-900 font-bold text-3xl lg:text-5xl mb-2">
-            {{ $t("not_found") }}
+            {{ result }}
           </h1>
           <router-link
+            v-if="result !== '...'"
             to="/"
-            class="w-full flex align-items-center py-5 border-300 border-bottom-1"
+            class="flex align-items-center pt-5 border-300"
           >
             <span
               class="flex justify-content-center align-items-center bg-cyan-400 border-round"
               style="height: 3.5rem; width: 3.5rem"
             >
               <i class="text-50 pi pi-fw pi-home text-2xl"></i>
-            </span>
-            <span class="ml-4 flex flex-column">
-              <span class="text-900 lg:text-xl font-medium mb-0 block">{{
-                $t("back_to_home")
-              }}</span>
             </span>
           </router-link>
         </div>
@@ -51,10 +80,12 @@
   </div>
 </template>
 
+<style scoped lang="scss"></style>
+
 <route lang="json">
 {
   "meta": {
-    "title": "not_found",
+    "title": "verify_user",
     "layout": "BlankLayout"
   }
 }

@@ -163,5 +163,8 @@
   "page_stocks": "Stocks",
   "page_login": "Login",
   "page_realtime_future": "Realtime Future",
-  "back_to_home": "Back to Home"
+  "back_to_home": "Back to Home",
+  "verify_user": "Verify User",
+  "user_verified": "User Verified",
+  "user_not_verified": "User Not Verified"
 }
