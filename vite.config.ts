@@ -6,8 +6,6 @@ import { defineConfig } from "vite";
 import Pages from "vite-plugin-pages";
 import Layouts from "vite-plugin-vue-layouts";
 
-const routesWithoutAuth = ["/login"];
-
 function manualChunks(id: string) {
   if (id.includes("node_modules")) {
     const regex = /node_modules\/([^/]+)\//;
@@ -27,7 +25,7 @@ export default defineConfig({
     Vue(),
     Pages({
       extendRoute: (route) => {
-        if (routesWithoutAuth.includes(route.path)) {
+        if (route.path === "/login") {
           return route;
         }
         if (!route.meta) route.meta = {};

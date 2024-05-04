@@ -21,7 +21,7 @@ const model = ref<MenuItem[]>([
       {
         label: "stocks_data",
         icon: "pi pi-fw pi-wallet",
-        to: "/stocks"
+        to: "/basic/stocks"
       }
     ]
   }
