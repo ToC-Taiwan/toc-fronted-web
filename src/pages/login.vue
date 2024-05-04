@@ -123,7 +123,6 @@ const login = async () => {
 
 <route lang="json">
 {
-  "path": "/login",
   "meta": {
     "title": "page_login",
     "layout": "BlankLayout"

@@ -35,7 +35,6 @@ onMounted(() => {
 
 <route lang="json">
 {
-  "path": "/",
   "meta": {
     "title": "page_home"
   }
