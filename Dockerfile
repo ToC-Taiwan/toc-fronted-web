@@ -7,6 +7,7 @@ ENV TZ=Asia/Taipei \
     TMT_PORT=26670
 
 COPY ./dist /usr/share/nginx/html/tmt-dist
+COPY ./assetlinks /usr/share/nginx/html/assetlinks
 COPY ./nginx.conf /etc/nginx/nginx.conf
 COPY ./scripts/entry_point.sh /usr/share/nginx/html/entry_point.sh
 
