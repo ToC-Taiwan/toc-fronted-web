@@ -182,9 +182,9 @@ const legendSettings = {
 
 <template>
   <div class="grid">
-    <div class="col-8">
+    <div class="col-12 xl:col-8">
       <div class="grid">
-        <div class="col-3">
+        <div class="col-6 xl:col-3">
           <Card class="card">
             <template #title>NASDAQ</template>
             <template #content>
@@ -200,7 +200,7 @@ const legendSettings = {
             </template>
           </Card>
         </div>
-        <div class="col-3">
+        <div class="col-6 xl:col-3">
           <Card class="card">
             <template #title>NF</template>
             <template #content>
@@ -216,7 +216,7 @@ const legendSettings = {
             </template>
           </Card>
         </div>
-        <div class="col-3">
+        <div class="col-6 xl:col-3">
           <Card class="card">
             <template #title>TSE</template>
             <template #content>
@@ -232,7 +232,7 @@ const legendSettings = {
             </template>
           </Card>
         </div>
-        <div class="col-3">
+        <div class="col-6 xl:col-3">
           <Card class="card">
             <template #title>OTC</template>
             <template #content>
@@ -294,7 +294,7 @@ const legendSettings = {
         </template>
       </Card>
     </div>
-    <div class="col-4">
+    <div class="col-12 xl:col-4">
       <Card class="card">
         <template #header></template>
         <template #title>{{ tick?.code }}</template>
