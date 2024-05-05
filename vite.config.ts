@@ -25,7 +25,8 @@ export default defineConfig({
     Vue(),
     Pages({
       extendRoute: (route) => {
-        if (route.path === "/login") {
+        const path = route.path as string;
+        if (path === "/login" || path.startsWith("/user/verify")) {
           return route;
         }
         if (!route.meta) route.meta = {};
