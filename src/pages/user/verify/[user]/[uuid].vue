@@ -35,7 +35,7 @@ onMounted(() => {
   <div
     class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden"
   >
-    <div class="flex flex-column align-items-center justify-content-center">
+    <div class="w-8 sm:w-6 align-items-center justify-content-center">
       <div
         style="
           border-radius: 56px;
@@ -48,12 +48,12 @@ onMounted(() => {
         "
       >
         <div
-          class="w-full surface-card py-8 px-5 sm:px-8 flex flex-column align-items-center"
+          class="surface-card py-8 px-5 sm:px-8 flex flex-column align-items-center"
           style="border-radius: 53px"
         >
           <img
             src="@/assets/svg/logo.svg"
-            alt="Sakai logo"
+            alt="TMT logo"
             class="mb-5 w-6rem flex-shrink-0"
           />
           <span class="text-blue-500 font-bold text-4xl">{{
