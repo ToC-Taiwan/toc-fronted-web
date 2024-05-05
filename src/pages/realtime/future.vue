@@ -249,7 +249,7 @@ const legendSettings = {
           </Card>
         </div>
       </div>
-      <Card class="card">
+      <Card class="card hidden xl:block">
         <template #content>
           <ejs-chart
             id="chartCandle"
