@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { GetNearestMXF } from "@/apis/basic/search";
 import { TradeIndex, WSMessage } from "@/pb/app/app";
 import type { FutureDetailMessage } from "@/pb/forwarder/basic";
 import { FutureRealTimeTickMessage } from "@/pb/forwarder/mq";
@@ -17,16 +18,25 @@ import { onMounted, onUnmounted, provide, ref } from "vue";
 
 let socket: WebSocket | null = null;
 
+const futureCode = ref("");
 const futureDetail = ref<FutureDetailMessage>();
 const tradeIndex = ref<TradeIndex | null>(null);
 const tick = ref<FutureRealTimeTickMessage | null>(null);
 const tickArr = ref<TimelineItem[]>([]);
 const seriesData = ref<Kbar[]>([]);
 
-onMounted(() => {
+onMounted(async () => {
+  await GetNearestMXF().then((res) => {
+    futureCode.value = res.code;
+  });
+
+  if (futureCode.value === "") {
+    return;
+  }
+
   const prototol = window.location.protocol === "https:" ? "wss" : "ws";
   const token = localStorage.getItem("token")?.replace("Bearer ", "");
-  const url = `${prototol}://${window.location.host}/tmt/v1/stream/ws/pick-future/MXFE4?token=${token}`;
+  const url = `${prototol}://${window.location.host}/tmt/v1/stream/ws/pick-future/${futureCode.value}?token=${token}`;
   socket = new WebSocket(url);
   socket.binaryType = "arraybuffer";
   socket.addEventListener("message", (event) => {
@@ -172,9 +182,9 @@ const legendSettings = {
 
 <template>
   <div class="grid">
-    <div class="col-8">
+    <div class="col-12 xl:col-8">
       <div class="grid">
-        <div class="col-3">
+        <div class="col-6 xl:col-3">
           <Card class="card">
             <template #title>NASDAQ</template>
             <template #content>
@@ -190,7 +200,7 @@ const legendSettings = {
             </template>
           </Card>
         </div>
-        <div class="col-3">
+        <div class="col-6 xl:col-3">
           <Card class="card">
             <template #title>NF</template>
             <template #content>
@@ -206,7 +216,7 @@ const legendSettings = {
             </template>
           </Card>
         </div>
-        <div class="col-3">
+        <div class="col-6 xl:col-3">
           <Card class="card">
             <template #title>TSE</template>
             <template #content>
@@ -222,7 +232,7 @@ const legendSettings = {
             </template>
           </Card>
         </div>
-        <div class="col-3">
+        <div class="col-6 xl:col-3">
           <Card class="card">
             <template #title>OTC</template>
             <template #content>
@@ -284,7 +294,7 @@ const legendSettings = {
         </template>
       </Card>
     </div>
-    <div class="col-4">
+    <div class="col-12 xl:col-4">
       <Card class="card">
         <template #header></template>
         <template #title>{{ tick?.code }}</template>
