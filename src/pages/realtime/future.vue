@@ -248,51 +248,53 @@ const legendSettings = {
             </template>
           </Card>
         </div>
+        <div class="col-12">
+          <Card class="card hidden xl:block">
+            <template #content>
+              <ejs-chart
+                id="chartCandle"
+                ref="chart"
+                :chart-area="chartArea"
+                align="center"
+                :title="futureDetail?.name"
+                style="display: block"
+                :primary-x-axis="primaryXAxis"
+                :primary-y-axis="primaryYAxis"
+                :tooltip="tooltip"
+                :axes="axes"
+                :rows="rows"
+                :legend-settings="legendSettings"
+              >
+                <e-series-collection>
+                  <e-series
+                    :data-source="seriesData"
+                    :enable-tooltip="enableTooltip"
+                    type="Column"
+                    x-name="period"
+                    y-name="volume"
+                    name="Volume"
+                  >
+                  </e-series>
+                  <e-series
+                    :data-source="seriesData"
+                    type="Candle"
+                    x-name="period"
+                    y-axis-name="secondary"
+                    high="high"
+                    low="low"
+                    open="open"
+                    close="close"
+                    volume="volume"
+                    bear-fill-color="red"
+                    bull-fill-color="green"
+                  >
+                  </e-series>
+                </e-series-collection>
+              </ejs-chart>
+            </template>
+          </Card>
+        </div>
       </div>
-      <Card class="card hidden xl:block">
-        <template #content>
-          <ejs-chart
-            id="chartCandle"
-            ref="chart"
-            :chart-area="chartArea"
-            align="center"
-            :title="futureDetail?.name"
-            style="display: block"
-            :primary-x-axis="primaryXAxis"
-            :primary-y-axis="primaryYAxis"
-            :tooltip="tooltip"
-            :axes="axes"
-            :rows="rows"
-            :legend-settings="legendSettings"
-          >
-            <e-series-collection>
-              <e-series
-                :data-source="seriesData"
-                :enable-tooltip="enableTooltip"
-                type="Column"
-                x-name="period"
-                y-name="volume"
-                name="Volume"
-              >
-              </e-series>
-              <e-series
-                :data-source="seriesData"
-                type="Candle"
-                x-name="period"
-                y-axis-name="secondary"
-                high="high"
-                low="low"
-                open="open"
-                close="close"
-                volume="volume"
-                bear-fill-color="red"
-                bull-fill-color="green"
-              >
-              </e-series>
-            </e-series-collection>
-          </ejs-chart>
-        </template>
-      </Card>
     </div>
     <div class="col-12 xl:col-4">
       <Card class="card">
