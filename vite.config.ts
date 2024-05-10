@@ -20,6 +20,10 @@ function manualChunks(id: string) {
   }
 }
 
+const defaultHostname = "localhost";
+const defaultHostPort = "26670";
+const defaultHost = `${defaultHostname}:${defaultHostPort}`;
+
 export default defineConfig({
   plugins: [
     Vue(),
@@ -55,20 +59,20 @@ export default defineConfig({
   server: {
     proxy: {
       "/tmt": {
-        target: "http://localhost:26670"
+        target: `http://${defaultHost}`
       },
       "/tmt/v1/stream/ws": {
-        target: "ws://localhost:26670",
+        target: `ws://${defaultHost}`,
         ws: true
       },
       "/tmt/v1/targets/ws": {
-        target: "ws://localhost:26670",
+        target: `ws://${defaultHost}`,
         ws: true
       }
     }
   },
   build: {
-    chunkSizeWarningLimit: 1024,
+    chunkSizeWarningLimit: 768,
     rollupOptions: {
       output: {
         manualChunks: manualChunks
