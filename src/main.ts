@@ -12,6 +12,7 @@ import { createApp } from "vue";
 import { VueFire } from "vuefire";
 
 registerLicense(import.meta.env.VITE_SYNCFUSION_LICENSE);
+
 const app = createApp(App)
   .use(createPinia())
   .use(ChartPlugin)
@@ -23,7 +24,7 @@ const app = createApp(App)
 if (import.meta.env.PROD) {
   app.use(VueFire, { firebaseApp });
 } else {
-  console.log("VueFire is not available in development mode.");
+  console.debug("VueFire is not available in development mode.");
 }
 
 app.mount("#app");
