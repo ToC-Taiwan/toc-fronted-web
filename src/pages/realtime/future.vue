@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { GetNearestMXF } from "@/apis/basic/search";
-import { TradeIndex, WSMessage } from "@/pb/app/app";
-import type { FutureDetailMessage } from "@/pb/forwarder/basic";
-import { FutureRealTimeTickMessage } from "@/pb/forwarder/mq";
+import {
+  TradeIndex,
+  WSMessage
+} from "@chindada/toc-trade-protobuf/src/ts/app/app";
+import type { FutureDetailMessage } from "@chindada/toc-trade-protobuf/src/ts/forwarder/basic";
+import { FutureRealTimeTickMessage } from "@chindada/toc-trade-protobuf/src/ts/forwarder/mq";
 import {
   CandleSeries,
   Category,
