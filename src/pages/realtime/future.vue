@@ -3,9 +3,9 @@ import { GetNearestMXF } from "@/apis/basic/search";
 import {
   TradeIndex,
   WSMessage
-} from "@chindada/toc-trade-protobuf/src/ts/app/app";
-import type { FutureDetailMessage } from "@chindada/toc-trade-protobuf/src/ts/forwarder/basic";
-import { FutureRealTimeTickMessage } from "@chindada/toc-trade-protobuf/src/ts/forwarder/mq";
+} from "@chindada/toc-trade-protobuf/typescript/app/app";
+import type { FutureDetailMessage } from "@chindada/toc-trade-protobuf/typescript/forwarder/basic";
+import { FutureRealTimeTickMessage } from "@chindada/toc-trade-protobuf/typescript/forwarder/mq";
 import {
   CandleSeries,
   Category,
