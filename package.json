@@ -16,9 +16,9 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@chindada/toc-trade-protobuf": "^0.1.7",
+    "@chindada/toc-trade-protobuf": "^0.1.9",
     "@syncfusion/ej2-vue-charts": "^25.2.4",
-    "axios": "^1.6.8",
+    "axios": "^1.7.0",
     "firebase": "^10.12.0",
     "pinia": "^2.1.7",
     "primeflex": "^3.3.1",

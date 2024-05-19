@@ -2,7 +2,7 @@
 import {
   StockVolumeRankMessage,
   StockVolumeRankResponse
-} from "@chindada/toc-trade-protobuf/src/ts/forwarder/realtime";
+} from "@chindada/toc-trade-protobuf/typescript/forwarder/realtime";
 import { onMounted, ref } from "vue";
 
 const stocks = ref<StockVolumeRankMessage[]>([]);
