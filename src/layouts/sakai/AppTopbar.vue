@@ -2,8 +2,11 @@
 import { Logout } from "@/apis/auth/auth";
 import router from "@/router";
 import { computed, onBeforeUnmount, onMounted, ref } from "vue";
+import { useI18n } from "vue-i18n";
 
 import { useLayout } from "./composables/layout";
+
+const { t } = useI18n();
 
 const { onMenuToggle } = useLayout();
 
@@ -93,7 +96,7 @@ const logout = () => {
     <div class="layout-topbar-menu" :class="topbarMenuClasses">
       <button class="p-link layout-topbar-button" @click="toggle">
         <i class="pi pi-user"></i>
-        <span>{{ $t("user") }}</span>
+        <span>{{ t("user") }}</span>
         <OverlayPanel ref="op">
           <div class="flex flex-column gap-3 w-10rem">
             <div>
@@ -105,7 +108,7 @@ const logout = () => {
                 >
                   <li class="flex align-items-center gap-2">
                     <div>
-                      <span class="font-medium">{{ $t("logout") }}</span>
+                      <span class="font-medium">{{ t("logout") }}</span>
                     </div>
                     <div
                       class="flex align-items-center gap-2 text-color-secondary ml-auto text-sm"

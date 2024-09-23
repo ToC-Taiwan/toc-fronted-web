@@ -7,7 +7,9 @@ rm -rf package-lock.json
 
 npm i
 npm i -g npm-check-updates
-ncu --peer -u
+npm i -g npm-check-updates
+ncu --reject primevue --peer -u
+ncu --peer -u -t minor -f primevue
 
 npm install
 npm run build

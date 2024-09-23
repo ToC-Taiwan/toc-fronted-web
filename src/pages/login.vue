@@ -3,8 +3,10 @@ import { Login } from "@/apis/auth/auth";
 import Toast from "primevue/toast";
 import { useToast } from "primevue/usetoast";
 import { ref } from "vue";
+import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
 
+const { t } = useI18n();
 const toast = useToast();
 const router = useRouter();
 
@@ -58,10 +60,10 @@ const login = async () => {
               class="mb-3"
             />
             <div class="text-900 text-3xl font-medium mb-3">
-              {{ $t("welcome") }}!
+              {{ t("welcome") }}!
             </div>
             <span class="text-600 font-medium">{{
-              $t("sign_in_to_continue")
+              t("sign_in_to_continue")
             }}</span>
           </div>
 
@@ -69,13 +71,13 @@ const login = async () => {
             <label
               for="username"
               class="block text-900 text-xl font-medium mb-2"
-              >{{ $t("username") }}</label
+              >{{ t("username") }}</label
             >
             <InputText
               id="username"
               v-model="username"
               type="text"
-              :placeholder="$t('enter_username')"
+              :placeholder="t('enter_username')"
               class="w-full md:w-30rem mb-5"
               style="padding: 1rem"
             />
@@ -83,13 +85,13 @@ const login = async () => {
             <label
               for="password"
               class="block text-900 font-medium text-xl mb-2"
-              >{{ $t("password") }}</label
+              >{{ t("password") }}</label
             >
             <InputText
               id="password"
               v-model="password"
               type="password"
-              :placeholder="$t('enter_password')"
+              :placeholder="t('enter_password')"
               class="w-full md:w-30rem mb-5"
               style="padding: 1rem"
             />
@@ -105,11 +107,11 @@ const login = async () => {
               <a
                 class="font-medium no-underline ml-2 text-right cursor-pointer"
                 style="color: var(--primary-color)"
-                >{{ $t("forget_password") }}?</a
+                >{{ t("forget_password") }}?</a
               >
             </div>
             <Button
-              :label="$t('sign_in')"
+              :label="t('sign_in')"
               class="w-full p-3 text-xl"
               @click="login"
             ></Button>
