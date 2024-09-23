@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import type { PropType } from "vue";
 import { onBeforeMount, ref, watch } from "vue";
+import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
 
 import { useLayout } from "./composables/layout";
 import { type MenuItem } from "./types/menu";
 
+const { t } = useI18n();
 const route = useRoute();
 
 const { layoutConfig, layoutState, setActiveMenuItem, onMenuToggle } =
@@ -95,7 +97,7 @@ const checkActiveRoute = (item: any) => {
       v-if="root && item.visible !== false"
       class="layout-menuitem-root-text"
     >
-      {{ $t(item.label ? item.label : "unknown") }}
+      {{ t(item.label ? item.label : "unknown") }}
     </div>
 
     <a
@@ -108,7 +110,7 @@ const checkActiveRoute = (item: any) => {
     >
       <i :class="item.icon" class="layout-menuitem-icon"></i>
       <span class="layout-menuitem-text">{{
-        $t(item.label ? item.label : "unknown")
+        t(item.label ? item.label : "unknown")
       }}</span>
       <i
         v-if="item.items"
@@ -125,7 +127,7 @@ const checkActiveRoute = (item: any) => {
     >
       <i :class="item.icon" class="layout-menuitem-icon"></i>
       <span class="layout-menuitem-text">{{
-        $t(item.label ? item.label : "unknown")
+        t(item.label ? item.label : "unknown")
       }}</span>
       <i
         v-if="item.items"

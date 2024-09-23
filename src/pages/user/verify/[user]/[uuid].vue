@@ -2,6 +2,9 @@
 import { VerifyUser } from "@/apis/auth/auth";
 import { i18n } from "@/i18n";
 import { onMounted, ref } from "vue";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
 
 const props = defineProps({
   user: {
@@ -57,7 +60,7 @@ onMounted(() => {
             class="mb-5 w-6rem flex-shrink-0"
           />
           <span class="text-blue-500 font-bold text-4xl">{{
-            $t("verify_user")
+            t("verify_user")
           }}</span>
           <h1 class="text-900 font-bold text-3xl lg:text-5xl mb-2">
             {{ result }}

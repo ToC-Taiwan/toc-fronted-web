@@ -1,4 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
+</script>
 
 <template>
   <div
@@ -27,7 +31,7 @@
           />
           <span class="text-blue-500 font-bold text-8xl">404</span>
           <h1 class="text-900 font-bold text-3xl lg:text-5xl mb-2">
-            {{ $t("not_found") }}
+            {{ t("not_found") }}
           </h1>
           <router-link to="/" class="flex align-items-center py-5 border-300">
             <span
