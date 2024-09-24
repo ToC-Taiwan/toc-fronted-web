@@ -18,8 +18,8 @@
   },
   "dependencies": {
     "@chindada/toc-trade-protobuf": "^0.1.11",
-    "@syncfusion/ej2-base": "^27.1.50",
-    "@syncfusion/ej2-vue-charts": "^27.1.50",
+    "@syncfusion/ej2-base": "^25.2.7",
+    "@syncfusion/ej2-vue-charts": "^25.2.6",
     "axios": "^1.7.7",
     "firebase": "^10.13.2",
     "pinia": "^2.2.2",
