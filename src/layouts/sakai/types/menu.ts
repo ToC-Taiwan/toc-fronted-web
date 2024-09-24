@@ -8,4 +8,5 @@ export interface MenuItem {
   separator?: boolean;
   visible?: boolean;
   items?: MenuItem[];
+  disabled?: boolean;
 }

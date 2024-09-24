@@ -1,3 +1,4 @@
 #!/bin/bash
 
-docker build -t ghcr.io/toc-taiwan/toc-fronted-web .
+docker buildx build -t ghcr.io/toc-taiwan/toc-fronted-web .
+docker system prune --volumes -f

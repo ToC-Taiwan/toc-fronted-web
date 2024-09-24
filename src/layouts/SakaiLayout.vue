@@ -33,7 +33,7 @@ const containerClass = computed(() => {
 
 const bindOutsideClickListener = () => {
   if (!outsideClickListener.value) {
-    outsideClickListener.value = (event: any) => {
+    outsideClickListener.value = (event: MouseEvent) => {
       if (isOutsideClicked(event)) {
         layoutState.overlayMenuActive.value = false;
         layoutState.staticMenuMobileActive.value = false;
@@ -51,15 +51,15 @@ const unbindOutsideClickListener = () => {
   }
 };
 
-const isOutsideClicked = (event: any) => {
+const isOutsideClicked = (event: MouseEvent) => {
   const sidebarEl = document.querySelector(".layout-sidebar");
   const topbarEl = document.querySelector(".layout-menu-button");
 
   return !(
-    sidebarEl?.isSameNode(event.target) ||
-    sidebarEl?.contains(event.target) ||
-    topbarEl?.isSameNode(event.target) ||
-    topbarEl?.contains(event.target)
+    sidebarEl?.isSameNode(event.target as Node) ||
+    sidebarEl?.contains(event.target as Node) ||
+    topbarEl?.isSameNode(event.target as Node) ||
+    topbarEl?.contains(event.target as Node)
   );
 };
 </script>
