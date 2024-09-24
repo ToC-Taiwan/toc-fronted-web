@@ -33,7 +33,7 @@ const topbarMenuClasses = computed(() => {
 
 const bindOutsideClickListener = () => {
   if (!outsideClickListener.value) {
-    outsideClickListener.value = (event: any) => {
+    outsideClickListener.value = (event: MouseEvent) => {
       if (isOutsideClicked(event)) {
         topbarMenuActive.value = false;
       }
@@ -49,20 +49,20 @@ const unbindOutsideClickListener = () => {
   }
 };
 
-const isOutsideClicked = (event: any) => {
+const isOutsideClicked = (event: MouseEvent) => {
   if (!topbarMenuActive.value) return;
   const sidebarEl = document.querySelector(".layout-topbar-menu");
   const topbarEl = document.querySelector(".layout-topbar-menu-button");
   return !(
-    sidebarEl?.isSameNode(event.target) ||
-    sidebarEl?.contains(event.target) ||
-    topbarEl?.isSameNode(event.target) ||
-    topbarEl?.contains(event.target)
+    sidebarEl?.isSameNode(event.target as Node) ||
+    sidebarEl?.contains(event.target as Node) ||
+    topbarEl?.isSameNode(event.target as Node) ||
+    topbarEl?.contains(event.target as Node)
   );
 };
 
 const op = ref();
-const toggle = (event: any) => {
+const toggle = (event: MouseEvent) => {
   op.value.toggle(event);
 };
 

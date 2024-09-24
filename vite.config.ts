@@ -6,19 +6,24 @@ import { defineConfig } from "vite";
 import Pages from "vite-plugin-pages";
 import Layouts from "vite-plugin-vue-layouts";
 
-function manualChunks(id: string) {
+const manualChunks = (id: string) => {
   if (id.includes("node_modules")) {
-    const regex = /node_modules\/([^/]+)\//;
+    const regex = /node_modules\/.pnpm\/([^/]+)\//;
     const match = id.match(regex);
+    let name;
     if (match && match[1]) {
-      if (match[1].includes("@")) {
-        return match[1].split("@")[1];
+      if (match[1].startsWith("@")) {
+        name = match[1].split("@")[1];
+      } else if (match[1].includes("@")) {
+        name = match[1].split("@")[0];
       }
-      return match[1];
     }
-    return "vendor";
+    if (name && name.length > 0) {
+      return "vendors".concat("-", name);
+    }
+    return "vendors";
   }
-}
+};
 
 const defaultHostname = "localhost";
 const defaultHostPort = "26670";
@@ -51,6 +56,13 @@ export default defineConfig({
       resolvers: [PrimeVueResolver()]
     })
   ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: "modern"
+      }
+    }
+  },
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url))
@@ -75,6 +87,7 @@ export default defineConfig({
     chunkSizeWarningLimit: 768,
     rollupOptions: {
       output: {
+        hashCharacters: "base36",
         manualChunks: manualChunks
       }
     }

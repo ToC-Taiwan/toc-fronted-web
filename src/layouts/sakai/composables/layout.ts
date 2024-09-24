@@ -1,4 +1,4 @@
-import { computed, reactive, toRefs } from "vue";
+import { type Ref, computed, reactive, toRefs } from "vue";
 
 interface LayoutConfig {
   menuMode: string;
@@ -20,8 +20,12 @@ const layoutState = reactive({
 });
 
 export function useLayout() {
-  const setActiveMenuItem = (item: any) => {
-    layoutConfig.activeMenuItem = item.value || item;
+  const setActiveMenuItem = (item: string | Ref<string>) => {
+    if (typeof item === "string") {
+      layoutConfig.activeMenuItem = item;
+    } else {
+      layoutConfig.activeMenuItem = item.value;
+    }
   };
 
   const onMenuToggle = () => {

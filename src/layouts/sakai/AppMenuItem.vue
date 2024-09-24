@@ -56,7 +56,7 @@ watch(
   }
 );
 
-const itemClick = (event: any, item: any) => {
+const itemClick = (event: MouseEvent, item: MenuItem) => {
   if (item.disabled) {
     event.preventDefault();
     return;
@@ -71,9 +71,9 @@ const itemClick = (event: any, item: any) => {
     onMenuToggle();
   }
 
-  if (item.command) {
-    item.command({ originalEvent: event, item: item });
-  }
+  // if (item.command) {
+  //   item.command({ originalEvent: event, item: item });
+  // }
 
   const foundItemKey = item.items
     ? isActiveMenu.value
@@ -84,7 +84,7 @@ const itemClick = (event: any, item: any) => {
   setActiveMenuItem(foundItemKey);
 };
 
-const checkActiveRoute = (item: any) => {
+const checkActiveRoute = (item: MenuItem) => {
   return route.path === item.to;
 };
 </script>

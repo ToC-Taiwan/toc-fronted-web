@@ -3,16 +3,15 @@ set -e
 
 rm -rf dist
 rm -rf node_modules
-rm -rf package-lock.json
+rm -rf pnpm-lock.yaml
 
-npm i
-npm i -g npm-check-updates
+pnpm i
 npm i -g npm-check-updates
 ncu --reject primevue --peer -u
 ncu --peer -u -t minor -f primevue
 
-npm install
-npm run build
+pnpm i
+pnpm build
 
 git add package.json
-git add package-lock.json
+git add pnpm-lock.yaml
