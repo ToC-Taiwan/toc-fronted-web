@@ -7,8 +7,8 @@ rm -rf pnpm-lock.yaml
 
 pnpm i
 npm i -g npm-check-updates
-ncu --reject primevue --peer -u
-ncu --peer -u -t minor -f primevue
+ncu --reject primevue,@syncfusion/ej2-base,@syncfusion/ej2-vue-charts --peer -u
+ncu --peer -u -t minor -f primevue,@syncfusion/ej2-base,@syncfusion/ej2-vue-charts
 
 pnpm i
 pnpm build
